@@ -9,9 +9,9 @@ public class FileRecorder {
 	public static void main(String[] args) {
 		String stage = JOptionPane.showInputDialog("Welcome to the Metaverse");
 		try {
-			FileWriter fw = new FileWriter("src/_01_File_recorder/FileRecorderText", true);
-			fw.write(stage + "\n");
-			fw.close();
+			FileWriter writer = new FileWriter("src/_01_File_recorder/FileRecorderText", true);
+			writer.write(stage + "\n");
+			writer.close();
 		}catch(Exception e) {
 			
 		}

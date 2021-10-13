@@ -1,6 +1,8 @@
 package _04_Directory_Iteration;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
@@ -29,5 +31,46 @@ public class DirectoryIterator {
 		 * Be aware of possible directories inside of directories.
 		 * (e.g //Copyright Â© 2019 FirstName LastName)
 		 */
+		JFileChooser jfc2 = new JFileChooser();
+		jfc2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnVal2 = jfc2.showOpenDialog(null);
+		
+//		File[] jProjects;
+		
+		if(returnVal2 == JFileChooser.APPROVE_OPTION){
+			File src = jfc2.getSelectedFile();
+			File[] directories = src.listFiles();
+			if(directories != null){
+				for(File d : directories){
+					System.out.println("found a directory --> " + d.getAbsolutePath());
+					File[] jProjects = d.listFiles();
+					for(File jP : jProjects){
+						String ext = jP.getAbsolutePath().substring(jP.getAbsolutePath().length() - 5);
+						//System.out.println("\t " + ext);
+						if(ext.contains(".java")){
+							System.out.println("\n java project");
+							try{
+								FileWriter fw = new FileWriter(jP.getAbsolutePath(), true);
+								
+								fw.write("\n//Copyright © 2021 Jetsapon Bansasine");
+								fw.close();
+								
+							}catch(IOException e){
+								e.printStackTrace();
+							}
+							
+						}
+						
+					}
+				}
+			}else{
+				System.out.println("no files found");
+			}
+			
+		}
+		
+		
 	}
-}
+	}
+
+

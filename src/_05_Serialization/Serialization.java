@@ -22,17 +22,16 @@ public class Serialization {
 
 	@Test
 	public void test() {
-		String name = "Jeff";
-		int age = 32;
+		
 
 		// Construct a SaveData object and save it to a file
-		save(new SaveData(name, age));
+		save(new SaveData("Jeff", 32));
 
 		// Load the SaveData object from the file
 		SaveData loadedData = load();
 
-		assertEquals(name, loadedData.name);
-		assertEquals(age, loadedData.age);
+		assertEquals("Jeff", loadedData.name);
+		assertEquals(32, loadedData.age);
 	}
 
 	/*
